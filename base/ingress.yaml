@@ -29,7 +29,7 @@ spec:
             pathType: Prefix
           - backend:
               service:
-                name: rollout-bluegreen-active
+                name: flask-hello
                 port:
                   number: 80
             path: /
