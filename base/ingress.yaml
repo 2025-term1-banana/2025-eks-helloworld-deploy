@@ -16,6 +16,7 @@ metadata:
     # 3. HTTP(80) 트래픽을 HTTPS(443)로 자동 리다이렉션
     alb.ingress.kubernetes.io/ssl-redirect: '443'
 spec:
+  ingressClassName: alb
   # --- TLS 설정 추가 ---
   # Ingress가 해당 호스트에 대해 TLS를 사용하도록 지정
   tls:
