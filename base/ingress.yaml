@@ -52,6 +52,11 @@ metadata:
     alb.ingress.kubernetes.io/canary: "true"
     alb.ingress.kubernetes.io/canary-by-header: "x-canary"
     alb.ingress.kubernetes.io/canary-by-header-value: "true"
+    # "hello-backend-action"이라는 이름의 액션을 정의합니다.
+    # 평상시: Stable 100%, Canary 0%
+    # Argo Rollouts는 배포 시 이 JSON의 'Weight' 값만 수정합니다.
+    alb.ingress.kubernetes.io/actions.hello-backend-action: >
+      {"Type":"forward","ForwardConfig":{"TargetGroups":[{"ServiceName":"hello-backend-stable","ServicePort":"80","Weight":100},{"ServiceName":"hello-backend-canary","ServicePort":"80","Weight":0}]}}
 spec:
   ingressClassName: alb
   rules:
