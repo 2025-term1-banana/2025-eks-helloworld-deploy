@@ -1,28 +1,27 @@
+# ✅ Stable Service
 apiVersion: v1
 kind: Service
 metadata:
   name: hello-backend-stable
   namespace: hello-backend
 spec:
-  ports:
-  - port: 80 # Ingress가 바라볼 포트
-    targetPort: 5000 # Pod의 Flask 앱 포트
-    protocol: TCP
   selector:
     app: hello-backend
-  type: ClusterIP
-
+  ports:
+    - port: 80
+      targetPort: 5000
+      protocol: TCP
 ---
+# ✅ Canary Service
 apiVersion: v1
 kind: Service
 metadata:
   name: hello-backend-canary
   namespace: hello-backend
 spec:
-  ports:
-  - port: 80
-    targetPort: 5000
-    protocol: TCP
   selector:
     app: hello-backend
-  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: 5000
+      protocol: TCP
