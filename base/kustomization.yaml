@@ -1,4 +1,6 @@
 resources:
+  - namespace.yaml
   - ingress.yaml
-  - deployment.yaml
+  - rollout.yaml
+  - hpa.yaml
   - service.yaml
