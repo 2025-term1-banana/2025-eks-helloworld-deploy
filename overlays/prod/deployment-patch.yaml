@@ -1,7 +1,0 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: flask-hello # (대상 Deployment의 이름)
-  namespace: flask-hello # (대상 Deployment의 네임스페이스)
-spec:
-  replicas: 2 # (변경하려는 값만 명시)
