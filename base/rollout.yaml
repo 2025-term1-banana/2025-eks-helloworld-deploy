@@ -15,6 +15,7 @@ spec:
       labels:
         app: hello-backend
     spec:
+      revisionHistoryLimit: 3
       # Pod 종료 신호(SIGTERM)를 받고,  ALB에서 완전히 제외될 때까지 60초간 대기합니다.
       terminationGracePeriodSeconds: 60
       containers:
