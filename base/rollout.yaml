@@ -33,7 +33,7 @@ spec:
               port: 5000 # Flask 앱 포트
             initialDelaySeconds: 5 # Pod 시작 후 5초 뒤 검사 시작
             periodSeconds: 10 # 10초마다 검사
-            timeoutSeconds: 2 # 2초 내 응답해야 함
+            timeoutSeconds: 5 # 5초 내 응답해야 함
             failureThreshold: 3 # 3번 실패 시 'NotReady'
           # Liveness Probe: Pod가 살아있는지(hang 걸리지 않았는지) 검사
           # 실패 시 Pod를 자동으로 재시작합니다.
