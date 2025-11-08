@@ -1,4 +1,4 @@
-# ✅ 운영용 ALB Ingress (기존 ACM 사용)
+# 운영용 ALB Ingress (기존 ACM 사용)
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -34,7 +34,7 @@ spec:
                 port:
                   number: 80
 ---
-# ✅ Canary 테스트용 Ingress (별도 도메인 + x-canary 헤더 기반)
+# Canary 테스트용 Ingress (별도 도메인 + x-canary 헤더 기반)
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -52,9 +52,8 @@ metadata:
     alb.ingress.kubernetes.io/canary: "true"
     alb.ingress.kubernetes.io/canary-by-header: "x-canary"
     alb.ingress.kubernetes.io/canary-by-header-value: "true"
-    # "hello-backend-action"이라는 이름의 액션을 정의합니다.
     # 평상시: Stable 100%, Canary 0%
-    # Argo Rollouts는 배포 시 이 JSON의 'Weight' 값만 수정합니다.
+    # Argo Rollouts는 배포시, 'Weight' 값만 수정
     alb.ingress.kubernetes.io/actions.hello-backend-stable: >
       {"Type":"forward","ForwardConfig":{"TargetGroups":[{"ServiceName":"hello-backend-stable","ServicePort":"80","Weight":100},{"ServiceName":"hello-backend-canary","ServicePort":"80","Weight":0}]}}
 spec:

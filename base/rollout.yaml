@@ -54,14 +54,12 @@ spec:
           ingress: hello-backend-ingress
           servicePort: 80
       steps:
-        # --- ✨ 이 두 단계를 추가합니다 ---
         - setCanaryScale:
-            replicas: 2 # 1. 'replicas: 2'에 맞게 새 버전 Pod 2개를 즉시 띄웁니다.
-        - pause: {duration: "3m"} # 2. 트래픽 0% 상태로 무기한 일시정지 하고 싶으면 { }
-        # -------------------------------
+            replicas: 2
+        - pause: { duration: "3m" }
         - setWeight: 25
-        - pause: {duration: "2m"}
+        - pause: { duration: "2m" }
         - setWeight: 50
-        - pause: {duration: "5m"}
+        - pause: { duration: "5m" }
         - setWeight: 75
-        - pause: {duration: "1m"}
+        - pause: { duration: "1m" }
