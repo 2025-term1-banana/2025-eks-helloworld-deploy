@@ -1,6 +1,9 @@
 resources:
   - ../../base
 
+namespace: banana-beta
+nameSuffix: -beta
+
 patches:
   - path: rollout-patch.yaml
   - path: ingress-patch.yaml
