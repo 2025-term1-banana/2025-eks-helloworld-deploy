@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
-  name: hello-backend
-  namespace: hello-backend
+  name: banana
+  namespace: banana
 spec:
   replicas: 2
