@@ -4,7 +4,7 @@ metadata:
   name: banana-ingress
 spec:
   rules:
-    - host: beta.mailshuttles.com
+    - host: beta.gyungdal.cc
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -12,4 +12,4 @@ metadata:
   name: banana-ingress-preview
 spec:
   rules:
-    - host: rollouts-test-preview.beta.mailshuttles.com
+    - host: rollouts-test-preview.beta.gyungdal.cc
