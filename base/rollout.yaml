@@ -19,7 +19,7 @@ spec:
       serviceAccountName: secret-db-iam
       containers:
         - name: banana
-          image: 624577703989.dkr.ecr.ap-northeast-1.amazonaws.com/hackathon:20251109023942
+          image: 624577703989.dkr.ecr.ap-northeast-1.amazonaws.com/hackathon:20251109025015
           ports:
             - containerPort: 5000
           readinessProbe:
@@ -49,11 +49,11 @@ spec:
       steps:
         - setCanaryScale:
             replicas: 2
-        - pause: { duration: "1m" }
+        - pause: {duration: "1m"}
         - setWeight: 25
-        - pause: { duration: "1m" }
+        - pause: {duration: "1m"}
         - setWeight: 50
-        - pause: { duration: "1m" }
+        - pause: {duration: "1m"}
         - setWeight: 75
-        - pause: { duration: "1m" }
+        - pause: {duration: "1m"}
         - setWeight: 100
