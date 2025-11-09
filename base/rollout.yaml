@@ -19,7 +19,7 @@ spec:
       serviceAccountName: secret-db-iam
       containers:
         - name: banana
-          image: 624577703989.dkr.ecr.ap-northeast-1.amazonaws.com/hackathon:20251109041540
+          image: 624577703989.dkr.ecr.ap-northeast-1.amazonaws.com/hackathon:20251109042007
           ports:
             - containerPort: 5000
           readinessProbe:
