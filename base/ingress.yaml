@@ -2,21 +2,21 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: banana-ingress
-  namespace: banana
+  name: banana-beta-ingress
+  namespace: banana-beta
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80,"HTTPS":443}]'
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-1:624577703989:certificate/89e93841-ea87-41f2-98fb-e0897e41fe6d
-    alb.ingress.kubernetes.io/group.name: banana
+    alb.ingress.kubernetes.io/group.name: banana-beta
     alb.ingress.kubernetes.io/actions.ssl-redirect: >
       {"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}
 spec:
   ingressClassName: alb
   rules:
-    - host: release.gyungdal.cc
+    - host: beta.gyungdal.cc
       http:
         paths:
           - path: /
@@ -30,7 +30,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: banana-stable
+                name: banana-beta-stable
                 port:
                   number: 80
 ---
@@ -38,15 +38,15 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: banana-ingress-preview
-  namespace: banana
+  name: banana-beta-ingress-preview
+  namespace: banana-beta
   annotations:
     kubernetes.io/ingress.class: alb
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80,"HTTPS":443}]'
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-1:624577703989:certificate/89e93841-ea87-41f2-98fb-e0897e41fe6d
-    alb.ingress.kubernetes.io/group.name: banana
+    alb.ingress.kubernetes.io/group.name: banana-beta
     alb.ingress.kubernetes.io/actions.ssl-redirect: >
       {"Type": "redirect", "RedirectConfig": { "Protocol": "HTTPS", "Port": "443", "StatusCode": "HTTP_301"}}
     alb.ingress.kubernetes.io/canary: "true"
@@ -54,12 +54,12 @@ metadata:
     alb.ingress.kubernetes.io/canary-by-header-value: "true"
     # 평상시: Stable 100%, Canary 0%
     # Argo Rollouts는 배포시, 'Weight' 값만 수정
-    alb.ingress.kubernetes.io/actions.banana-stable: >
-      {"Type":"forward","ForwardConfig":{"TargetGroups":[{"ServiceName":"banana-stable","ServicePort":"80","Weight":100},{"ServiceName":"banana-canary","ServicePort":"80","Weight":0}]}}
+    alb.ingress.kubernetes.io/actions.banana-beta-stable: >
+      {"Type":"forward","ForwardConfig":{"TargetGroups":[{"ServiceName":"banana-beta-stable","ServicePort":"80","Weight":100},{"ServiceName":"banana-beta-canary","ServicePort":"80","Weight":0}]}}
 spec:
   ingressClassName: alb
   rules:
-    - host: rollouts-test-preview.release.gyungdal.cc
+    - host: rollouts-test-preview.beta.gyungdal.cc
       http:
         paths:
           - path: /
@@ -73,6 +73,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: banana-canary
+                name: banana-beta-canary
                 port:
                   number: 80

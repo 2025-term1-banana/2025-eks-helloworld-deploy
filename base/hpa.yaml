@@ -1,13 +1,13 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: banana-hpa
-  namespace: banana
+  name: banana-beta-hpa
+  namespace: banana-beta
 spec:
   scaleTargetRef:
     apiVersion: argoproj.io/v1alpha1
     kind: Rollout
-    name: banana
+    name: banana-beta
   minReplicas: 2
   maxReplicas: 4
   metrics:
